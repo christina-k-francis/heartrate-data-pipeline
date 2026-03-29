@@ -35,7 +35,7 @@ def create_lineplot(data: list, removed_data: dict, plot_name: str):
 
     # creating the plot
     plt.figure(figsize=(15, 5))
-    plt.title('Heartrate Timeseries')
+    plt.title(f'Heartrate Timeseries: {plot_name}')
     plt.plot(plotting_xaxis, plotting_data,
              color='coral',
              linewidth=1.5,
@@ -51,6 +51,6 @@ def create_lineplot(data: list, removed_data: dict, plot_name: str):
     # saving the image
     output_dir = f'images/{plot_name}_heartrate_timeseries.png' 
     plt.savefig(output_dir)
-    print(f'plot saved to {output_dir}!')
+    print(f'plot saved to {output_dir}!\n')
 
     plt.show()
