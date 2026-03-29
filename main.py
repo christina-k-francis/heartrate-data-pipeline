@@ -22,6 +22,8 @@ def run(file: str, k: int = 2):
             content = f.read()
     # creating a list of heart rate values, removing line breaks
     data = content.split('\n')
+    # strip the trailing empty string caused by the last line in the txt file
+    if data[-1] == '': data = data[:-1]
 
     # cleaning the data and removing invalid entries
     cleaned_data, removed_values = cd.clean_heartrate_data(data)
