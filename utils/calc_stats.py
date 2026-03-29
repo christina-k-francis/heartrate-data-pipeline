@@ -75,11 +75,11 @@ def rolling_avg(data: list, k: int) -> float:
 def variance(data: list) -> float:
     # squared deviation = (xi - xbar)^2
     squared_devs = []
-    for val in clean_data:
+    for val in data:
         # keeping a running list of squared deviations
-        squared_devs.append((int(val) - average(clean_data))**2)
+        squared_devs.append((int(val) - average(data))**2)
     # calculating sample variance = average of squared deviations
-    var = sum(squared_devs) / (len(clean_data) - 1)
+    var = sum(squared_devs) / (len(data) - 1)
     # output rounded variance value
     return round(var, 2)
 
