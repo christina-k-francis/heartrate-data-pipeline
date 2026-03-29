@@ -25,19 +25,23 @@ def run(file: str, k: int = 2):
     # cleaning the data and removing invalid entries
     cleaned_list, removed_values = cd.clean_heartrate_data(data)
 
-    # calculating the average, median, range, and rolling average
+    # calculating descriptive statistics
     avg_val = cs.average(data)
     median_val = cs.median(data)
     range_val = cs.range(data)
     rolling_average = cs.rolling_avg(data, k)
+    variance_val = cs.variance(data)
+    stdev_val = cs.stdev(variance_val)
 
     # printing out descriptive statistics to the console
     print(f'Filename: {file}')
     print('DESCRIPTIVE STATISTICS:')
-    print(f'Average = {avg_val}')
-    print(f'Median = {median_val}')
     print(f'Range = {range_val}')
+    print(f'Median = {median_val}')
+    print(f'Average = {avg_val}')
     print(f'Rolling Average ({k}) = {rolling_average}')
+    print(f'Variance = {variance_val}')
+    print(f'Standard Deviation = {stdev_val}')
     # printing out a data quality measure to the console
     print(f'Number of Removed Values = {len(removed_values)}\n')
 
