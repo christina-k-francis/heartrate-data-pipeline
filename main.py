@@ -1,5 +1,6 @@
 import utils.calc_stats as cs
 import utils.clean_data as cd
+import utils.plot_data as pd
 
 def run(file: str, k: int = 2):
     """
@@ -23,14 +24,14 @@ def run(file: str, k: int = 2):
     data = content.split('\n')
 
     # cleaning the data and removing invalid entries
-    cleaned_list, removed_values = cd.clean_heartrate_data(data)
+    cleaned_data, removed_values = cd.clean_heartrate_data(data)
 
     # calculating descriptive statistics
-    avg_val = cs.average(data)
-    median_val = cs.median(data)
-    range_val = cs.range(data)
-    rolling_average = cs.rolling_avg(data, k)
-    variance_val = cs.variance(data)
+    avg_val = cs.average(cleaned_data)
+    median_val = cs.median(cleaned_data)
+    range_val = cs.range(cleaned_data)
+    rolling_average = cs.rolling_avg(cleaned_data, k)
+    variance_val = cs.variance(cleaned_data)
     stdev_val = cs.stdev(variance_val)
 
     # printing out descriptive statistics to the console
@@ -44,6 +45,8 @@ def run(file: str, k: int = 2):
     print(f'Standard Deviation = {stdev_val}')
     # printing out a data quality measure to the console
     print(f'Number of Removed Values = {len(removed_values)}\n')
+
+    pd.create_lineplot(cleaned_data, removed_values, file.split('/')[1].split('.')[0])
 
 if __name__ == "__main__":
     run("data/phase0.txt")
